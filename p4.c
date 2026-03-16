@@ -15,6 +15,5 @@ int main()
    int my_int = 10;
    printf(" %zu \n", sizeof(my_int));
    printf("%p\n", &a[4]);
-
     return 0;
 }
