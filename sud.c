@@ -2,7 +2,7 @@
 
 int main()
 {
-    char name[5][20];   // space for 5 names (each up to 20 characters)
+    char name[5][20];   
     int marks[5];
 
     for(int i = 0; i < 5; i++)
@@ -14,14 +14,14 @@ int main()
         scanf("%d", &marks[i]);
     }
 
-    char (*ptr)[20] = name;  // pointer to name array
+    char (*ptr)[20] = name;  
     int *ptr1 = marks;
 
     printf("\nSelected students marks:\n");
 
     for(int i = 0; i < 5; i++)
     {
-        if(i == 3)   // printing only 4th student
+        if(i == 3)  
         {
             printf("Name: %s  Marks: %d\n", *(ptr+i), *(ptr1+i));
         }
