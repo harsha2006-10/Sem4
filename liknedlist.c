@@ -56,11 +56,49 @@ void display() {
     }
 }
 
+void insertAtPosition(int value, int pos) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = NULL;
+
+    if (pos == 1) {
+        newNode->next = head;
+        head = newNode;
+        return;
+    }
+    struct Node* temp = head;
+    for (int i = 1; i < pos - 1 && temp != NULL; i++) {
+        temp = temp->next;
+    }
+    if (temp == NULL) {
+        printf("Invalid position\n");
+        return;
+    }
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+void search(int key) {
+    struct Node* temp = head;
+    int position = 1;
+
+    while (temp != NULL) {
+        if (temp->data == key) {
+            printf("Element found at position %d\n", position);
+            return;
+        }
+        temp = temp->next;
+        position++;
+    }
+
+    printf("Element not found\n");
+}
+
 int main() {
-    int choice, value;
+    int choice, value , pos;
 
     while (1) {
-        printf("\n1. Insert\n2. Display\n3. Exit\n4. Insert at Beginning\n5. Delete\n");
+        printf("\n1. Insert\n2. Display\n3. Exit\n4. Insert at Beginning\n5. Delete\n6. search for element\n7. insetr for pos\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
 
@@ -88,7 +126,20 @@ int main() {
             case 5:
                 delete();
                 break;
+            
+            case 6:
+                printf("Enter value to search: ");
+                scanf("%d", &value);
+                search(value);
+                break;
+            
+          case 7:
+          printf("Enter value and position: ");
+          scanf("%d %d", &value, &pos);
+          insertAtPosition(value, pos);
+          break;
 
+          
             default:
                 printf("Invalid choice\n");
         }
